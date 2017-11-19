@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { View, Text, TouchableOpacity, TextInput, StyleSheet } from 'react-native'
-
-class Inputs extends Component {
+import { Actions } from 'react-native-router-flux';
+class LoginInputs extends Component {
    state = {
       email: '',
       password: ''
@@ -15,7 +15,11 @@ class Inputs extends Component {
    login = (email, pass) => {
       alert('email: ' + email + ' password: ' + pass)
    }
+   goToSignup= () => {
+   	Actions.signup({welcometext: 'Hello World!'});
+   }
    render(){
+   	const goToSignup = () => Actions.signup({welcometext: 'Hello World!'}); 
       return (
          <View style = {styles.container}>
             <TextInput style = {styles.input}
@@ -37,13 +41,21 @@ class Inputs extends Component {
                onPress = {
                   () => this.login(this.state.email, this.state.password)
                }>
-               <Text style = {styles.submitButtonText}> Submit </Text>
+               <Text style = {styles.submitButtonText}> Login </Text>
             </TouchableOpacity>
+            <TouchableOpacity
+               style = {styles.signupButton}
+               onPress = {
+                  () => this.goToSignup()
+               }>
+               <Text style = {styles.submitButtonText}> Signup </Text>
+            </TouchableOpacity>
+            
          </View>
       )
    }
 }
-export default Inputs
+export default LoginInputs
 
 const styles = StyleSheet.create({
    container: {
@@ -57,6 +69,12 @@ const styles = StyleSheet.create({
    },
    submitButton: {
       backgroundColor: '#7a42f4',
+      padding: 10,
+      margin: 15,
+      height: 40,
+   },
+   signupButton: {
+      backgroundColor: 'red',
       padding: 10,
       margin: 15,
       height: 40,

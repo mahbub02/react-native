@@ -1,9 +1,9 @@
 import React from 'react';
-import Inputs from './input.js'
+import LoginInputs from './loginInputs.js'
 
 const Login = () => {
    return (
-      <Inputs />
+      <LoginInputs />
    )
 }
 export default Login
