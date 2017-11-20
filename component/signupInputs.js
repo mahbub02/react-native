@@ -49,7 +49,7 @@ class SignupInputs extends Component {
              alert("Service unavailable, please try again later");
          } else {
             alert("Account successfully created. Please login");
-            Actions.login({welcometext: 'Account successfully created. Please login'});
+            Actions.login({landingMessage: 'Account successfully created. Please login'});
          }
 
          

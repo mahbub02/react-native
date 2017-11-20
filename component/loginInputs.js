@@ -4,7 +4,7 @@ import { Actions } from 'react-native-router-flux';
 class LoginInputs extends Component {
 	constructor(props) {
 	  super(props);
-	  alert(this.props.welcometext);
+
 	}
    state = {
       email: '',
@@ -29,9 +29,7 @@ class LoginInputs extends Component {
       return (
 
          <View style = {styles.container}>
-               	<View >
-               	<Text> {this.props.welcometext} </Text>
-            	</View>
+
             <TextInput style = {styles.input}
                underlineColorAndroid = "transparent"
                placeholder = "Email"
@@ -67,9 +65,7 @@ class LoginInputs extends Component {
 }
 export default LoginInputs
 
-LoginInputs.defaultProps = {
-      welcometext: "sadia"
-   };
+
 
 const styles = StyleSheet.create({
    container: {
