@@ -16,13 +16,30 @@ class LoginInputs extends Component {
    handlePassword = (text) => {
       this.setState({ password: text })
    }
-   login = (email, pass) => {
-      alert('email: ' + email + ' password: ' + pass)
+   login = (email, password) => {
+      let url ='http://ezpark.azurewebsites.net/api/Users?email='+email+'&password='+password;
+     
+      fetch(url, {
+         method: 'GET'
+      })
+      .then((response) =>
+         response.json()
+      )
+      .then((responseJson) => {
+         if(responseJson && responseJson.Id) {
+            Actions.parkings({landingMessage: 'Listing your near by parking spots'});
+         } else{
+            alert("Invalid email or password");
+         }
+      })
+      .catch((error)=> {
+          alert("Invalid email or password");
+      });
    }
+
    goToSignup= () => {
-   	Actions.signup({welcometext: 'Hello World!'});
+   	Actions.signup({landingMessage: 'welcome to ezpark'});
    }
-   
 
    render(){
    	const goToSignup = () => Actions.signup({welcometext: 'Hello World!'}); 
