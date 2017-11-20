@@ -2,6 +2,10 @@ import React, { Component } from 'react'
 import { View, Text, TouchableOpacity, TextInput, StyleSheet } from 'react-native'
 import { Actions } from 'react-native-router-flux';
 class LoginInputs extends Component {
+	constructor(props) {
+	  super(props);
+	  alert(this.props.welcometext);
+	}
    state = {
       email: '',
       password: ''
@@ -18,10 +22,16 @@ class LoginInputs extends Component {
    goToSignup= () => {
    	Actions.signup({welcometext: 'Hello World!'});
    }
+   
+
    render(){
    	const goToSignup = () => Actions.signup({welcometext: 'Hello World!'}); 
       return (
+
          <View style = {styles.container}>
+               	<View >
+               	<Text> {this.props.welcometext} </Text>
+            	</View>
             <TextInput style = {styles.input}
                underlineColorAndroid = "transparent"
                placeholder = "Email"
@@ -56,6 +66,10 @@ class LoginInputs extends Component {
    }
 }
 export default LoginInputs
+
+LoginInputs.defaultProps = {
+      welcometext: "sadia"
+   };
 
 const styles = StyleSheet.create({
    container: {

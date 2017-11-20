@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { View, Text, TouchableOpacity, TextInput, StyleSheet } from 'react-native'
-
+import { Actions } from 'react-native-router-flux';
 class SignupInputs extends Component {
    state = {
       firstName: '',
@@ -26,8 +26,40 @@ class SignupInputs extends Component {
       this.setState({ phone: text })
    }
 
-   signup = (firstName, lastName, email, pass, phone) => {
-      alert('firstName: ' + firstName +'lastName: ' + lastName +'email: ' + email + ' password: ' + pass+ ' phone: ' + phone)
+   signup = (firstName, lastName, email, password, phone) => {
+      //alert('firstName: ' + firstName +'lastName: ' + lastName +'email: ' + email + ' password: ' + password+ ' phone: ' + phone);
+      fetch('http://ezpark.azurewebsites.net/api/Users/', {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+         FirstName: firstName,
+         LastName: lastName,
+         Email: email,
+         Password: password,
+         Phone: phone
+        })
+      })
+      .then((response) => response.json())
+      .then((responseJson) => {
+         
+         if(responseJson.Message){
+             alert("Service unavailable, please try again later");
+         } else {
+            alert("Account successfully created. Please login");
+            Actions.login({welcometext: 'Account successfully created. Please login'});
+         }
+
+         
+         this.setState({
+            data: responseJson
+         })
+      })
+      .catch((error) => {
+         alert(error);
+      });
    }
    render(){
       return (

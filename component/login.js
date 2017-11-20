@@ -6,4 +6,5 @@ const Login = () => {
       <LoginInputs />
    )
 }
-export default Login
+export default Login;
+
