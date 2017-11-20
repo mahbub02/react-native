@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { View, Text, TouchableOpacity, TextInput, StyleSheet } from 'react-native'
+import { Actions } from 'react-native-router-flux';
 
 class Parkings extends Component {
   state = {
@@ -25,7 +26,9 @@ class Parkings extends Component {
 	 
 	}
   alertItemName = (item) => {
-      alert(item.Name)
+     
+      Actions.parkingDetails({Id: item.Id});
+
    }
    render(){
       return( 
