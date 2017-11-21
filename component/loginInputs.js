@@ -27,6 +27,8 @@ class LoginInputs extends Component {
       )
       .then((responseJson) => {
          if(responseJson && responseJson.Id) {
+            global.user.id=responseJson.Id;
+            global.user.email=responseJson.UserId; // todo change it to email instead of UserId
             Actions.parkings({landingMessage: 'Listing your near by parking spots'});
          } else{
             alert("Invalid email or password");
@@ -52,6 +54,7 @@ class LoginInputs extends Component {
                placeholder = "Email"
                placeholderTextColor = "#9a73ef"
                autoCapitalize = "none"
+               value="sadiashormin@gmail.com"
                onChangeText = {this.handleEmail}/>
             
             <TextInput style = {styles.input}
@@ -59,6 +62,7 @@ class LoginInputs extends Component {
                placeholder = "Password"
                placeholderTextColor = "#9a73ef"
                autoCapitalize = "none"
+               value="123456"
                onChangeText = {this.handlePassword}/>
                
             <TouchableOpacity

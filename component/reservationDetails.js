@@ -2,14 +2,14 @@ import React, { Component } from 'react'
 import { View, Text, TouchableOpacity, TextInput, StyleSheet, Picker } from 'react-native'
 import { Actions } from 'react-native-router-flux';
 
-class ParkingDetails extends Component {
+class ReservationDetails extends Component {
   state = {
       data: {},
       duration: 15
    }
   componentDidMount = () => {
     alert(this.props.Id);
-    let url='http://ezpark.azurewebsites.net/api/parkingspots/'+this.props.Id;
+    let url='http://ezpark.azurewebsites.net/api/Reservations?email='+global.user.email;
       fetch(url, {
          method: 'GET'
       })
@@ -17,7 +17,7 @@ class ParkingDetails extends Component {
       .then((responseJson) => {
          console.log(responseJson);
          this.setState({
-            data: responseJson
+            data: responseJson[0]
          })
       })
       .catch((error) => {
@@ -28,22 +28,23 @@ class ParkingDetails extends Component {
 	  super(props);
 	 
 	}
-  reserveIt = () => {
-    
+  cancelIt = () => {
+      alert("");
       let currentTime = new Date();
       let endtime = new Date();
       endtime.setMinutes(endtime.getMinutes() + parseInt(this.state.duration));
       fetch('http://ezpark.azurewebsites.net/api/Reservations/', {
-        method: 'POST',
+        method: 'PUT',
         headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-         ParkingSpotId: this.props.Id,
+         Id: this.state.Id,
+         ParkingSpotId: this.state.ParkingSpotId,
          UserId: global.user.id,
-         StartTime: currentTime.toISOString(),
-         EndTime: endtime.toISOString()
+         StartTime: this.state.StartTime,
+         EndTime: this.state.EndTime
         })
       })
       .then((response) => response.json())
@@ -53,11 +54,16 @@ class ParkingDetails extends Component {
              alert("Service unavailable, please try again later");
          } else {
             alert("Reservation is successful."+ responseJson.Id);
-            Actions.reservationDetails({Id: responseJson.Id});
+            //Actions.login({landingMessage: 'Account successfully created. Please login'});
          }
+
+         
+         this.setState({
+            data: responseJson
+         })
       })
       .catch((error) => {
-         alert("You have another active reservation, please check your reservation");
+         alert(error);
       });
    }
    render(){
@@ -71,52 +77,35 @@ class ParkingDetails extends Component {
          </View>
           <View> 
              <Text style = {styles.text}>
-                  {this.state.data.Name}
+                  {this.state.data.ParkingSpotId}
             </Text>
          </View>
          <View> 
              <Text style = {styles.text}>
-                  {this.state.data.Address}
+                  {this.state.data.StartTime}
             </Text>
          </View>
          <View> 
              <Text style = {styles.text}>
-                  {this.state.data.City}
+                  {this.state.data.EndTime}
             </Text>
          </View>
+         
          <View> 
              <Text style = {styles.text}>
-                  {this.state.data.ZipCode}
+                 "space id:" {this.state.data.SpaceId}
             </Text>
          </View>
-         <View> 
-             <Text style = {styles.text}>
-                  {this.state.data.NumberOfSpace}
-            </Text>
-         </View>
-         <View> 
-             <Text style = {styles.text}>
-                  {this.state.data.NumberOfAvailableParking}
-            </Text>
-         </View>
-         <Picker
-           selectedValue={this.state.duration} onValueChange={(itemValue, itemIndex) => this.setState({duration: itemValue})}>
-           <Picker.Item label="15 minute" value="15" />
-           <Picker.Item label="30 minute" value="30" />
-           <Picker.Item label="1 Hour" value="60" />
-           <Picker.Item label="2 Hour" value="120" />
-           <Picker.Item label="3 hours" value="180" />
-           <Picker.Item label="8 Hour" value="480" />
-         </Picker>
+         
 
          <View> 
                   <TouchableOpacity
                      
                      style = {styles.container}
-                     onPress = {() => this.reserveIt()}>
+                     onPress = {() => this.cancelIt()}>
                      
                      <Text style = {styles.text}>
-                        "RESERVE"
+                        "Cancel reservation"
                      </Text>
                   </TouchableOpacity>
          
@@ -126,7 +115,7 @@ class ParkingDetails extends Component {
       )
    }
 }
-export default ParkingDetails;
+export default ReservationDetails;
 
 const styles = StyleSheet.create ({
    container: {
@@ -139,6 +128,6 @@ const styles = StyleSheet.create ({
       color: '#4f603c'
    }
 })
-ParkingDetails.defaultProps = {
-      landingMessage: "Parking details"
+ReservationDetails.defaultProps = {
+      landingMessage: "Reservation details"
 };

@@ -7,6 +7,9 @@
 import React, { Component } from 'react';
 import { Router, Scene } from 'react-native-router-flux';
 import Routes from './component/routes.js'
+import './constant/global.js'
+
+
 import {
   Platform,
   StyleSheet,

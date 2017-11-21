@@ -26,13 +26,30 @@ class Parkings extends Component {
 	 
 	}
   alertItemName = (item) => {
-     
+    
       Actions.parkingDetails({Id: item.Id});
+
+   }
+   reservations = (item) => {
+    
+       Actions.reservationDetails();
 
    }
    render(){
       return( 
       <View > 
+      <View> 
+                  <TouchableOpacity
+                     
+                     style = {styles.reservations}
+                     onPress = {() => this.reservations()}>
+                     
+                     <Text style = {styles.text}>
+                        ==
+                     </Text>
+                  </TouchableOpacity>
+         
+         </View>
          <Text> {this.props.landingMessage} </Text>
          <View> 
             {
@@ -64,6 +81,14 @@ const styles = StyleSheet.create ({
       alignItems: 'center',
    },
    text: {
+      color: '#4f603c'
+   },
+   reservations: {
+    backgroundColor: '#7a42f4',
+      padding: 10,
+      margin: 15,
+      height: 40,
+      width: 30,
       color: '#4f603c'
    }
 })
