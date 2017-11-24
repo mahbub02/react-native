@@ -52,17 +52,17 @@ class LoginInputs extends Component {
             <TextInput style = {styles.input}
                underlineColorAndroid = "transparent"
                placeholder = "Email"
-               placeholderTextColor = "#9a73ef"
+               placeholderTextColor = "#FFECD8"
                autoCapitalize = "none"
-               value="sadiashormin@gmail.com"
+              
                onChangeText = {this.handleEmail}/>
             
             <TextInput style = {styles.input}
                underlineColorAndroid = "transparent"
                placeholder = "Password"
-               placeholderTextColor = "#9a73ef"
+               placeholderTextColor = "#FFECD8"
                autoCapitalize = "none"
-               value="123456"
+              
                onChangeText = {this.handlePassword}/>
                
             <TouchableOpacity
@@ -70,14 +70,14 @@ class LoginInputs extends Component {
                onPress = {
                   () => this.login(this.state.email, this.state.password)
                }>
-               <Text style = {styles.submitButtonText}> Login </Text>
+               <Text style = {styles.submitButtonText}> LOG IN </Text>
             </TouchableOpacity>
             <TouchableOpacity
                style = {styles.signupButton}
                onPress = {
                   () => this.goToSignup()
                }>
-               <Text style = {styles.submitButtonText}> Signup </Text>
+               <Text style = {styles.submitButtonText}> SIGN UP </Text>
             </TouchableOpacity>
             
          </View>
@@ -90,27 +90,39 @@ export default LoginInputs
 
 const styles = StyleSheet.create({
    container: {
-      paddingTop: 23
+      paddingTop: 23,
+       justifyContent: 'center',
+     
    },
    input: {
       margin: 15,
       height: 40,
-      borderColor: '#7a42f4',
-      borderWidth: 1
+      borderColor: '#CCC',
+      borderWidth: 1,
+      color: '#FDC02F',
+       paddingLeft: 5
    },
    submitButton: {
-      backgroundColor: '#7a42f4',
+      backgroundColor: '#FDC02F',
       padding: 10,
       margin: 15,
       height: 40,
+     
    },
    signupButton: {
-      backgroundColor: 'red',
+      backgroundColor: '#FDC02F',
       padding: 10,
+     
+
       margin: 15,
       height: 40,
+      
    },
    submitButtonText:{
-      color: 'white'
+      color: 'black',
+      textAlign: 'center',
+      fontWeight: 'bold',
+
+
    }
 })

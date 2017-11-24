@@ -37,18 +37,17 @@ class Parkings extends Component {
    }
    render(){
       return( 
-      <View > 
-      <View> 
-                  <TouchableOpacity
-                     
-                     style = {styles.reservations}
-                     onPress = {() => this.reservations()}>
-                     
-                     <Text style = {styles.text}>
-                        ==
-                     </Text>
-                  </TouchableOpacity>
-         
+      <View style={styles.container}> 
+         <View> 
+            <TouchableOpacity
+               
+               style = {styles.reservationsButton}
+               onPress = {() => this.reservations()}>
+               
+               <Text style = {styles.reservationsButtonText}>
+                  ACTIVE RESERVATION
+               </Text>
+            </TouchableOpacity>
          </View>
          <Text> {this.props.landingMessage} </Text>
          <View> 
@@ -59,7 +58,7 @@ class Parkings extends Component {
                      style = {styles.container}
                      onPress = {() => this.alertItemName(item)}>
                      
-                     <Text style = {styles.text}>
+                     <Text style = {styles.reservationsButtonText}>
                         {item.Name}
                      </Text>
                   </TouchableOpacity>
@@ -76,20 +75,22 @@ export default Parkings;
 const styles = StyleSheet.create ({
    container: {
       padding: 10,
-      marginTop: 3,
-      backgroundColor: '#d9f9b1',
-      alignItems: 'center',
+      backgroundColor: 'black',
+      flex:1
+      
    },
-   text: {
-      color: '#4f603c'
+   reservationsButtonText: {
+      color: 'black',
+      textAlign: 'center',
+      fontWeight: 'bold',
    },
-   reservations: {
-    backgroundColor: '#7a42f4',
+   reservationsButton: {
+     backgroundColor: '#FDC02F',
       padding: 10,
+     
+
       margin: 15,
       height: 40,
-      width: 30,
-      color: '#4f603c'
    }
 })
 Parkings.defaultProps = {

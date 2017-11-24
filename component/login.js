@@ -9,8 +9,8 @@ class Login extends Component {
 	}
    render(){
       return( 
-      <View > 
-         <Text> {this.props.landingMessage} </Text>
+      <View style = {{backgroundColor: 'black', flex: 1}}> 
+         <Text style={{ fontSize: 20, color: '#FDC02F',  padding: 10,paddingTop: 40, fontFamily: 'Cochin', textAlign:'center'}}> {this.props.landingMessage} </Text>
      	 <LoginInputs />
       </View>)
    }
@@ -18,6 +18,8 @@ class Login extends Component {
 export default Login;
 
 Login.defaultProps = {
-      landingMessage: "Welcome to ezpark, please login"
+      landingMessage: "WELCOME TO EZPARK"
 };
+
+
 
