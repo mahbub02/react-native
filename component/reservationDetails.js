@@ -10,6 +10,7 @@ class ReservationDetails extends Component {
   componentDidMount = () => {
     
     let url='http://ezpark.azurewebsites.net/api/Reservations?email='+global.user.email;
+   
       fetch(url, {
          method: 'GET'
       })
@@ -78,7 +79,7 @@ class ReservationDetails extends Component {
     var offset = date.getTimezoneOffset() / 60;
     var hours = date.getHours();
 
-    newDate.setHours(hours - offset);
+    newDate.setHours(hours +0);
 
     return newDate;   
 } 

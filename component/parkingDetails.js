@@ -29,7 +29,11 @@ class ParkingDetails extends Component {
 	 
 	}
   reserveIt = () => {
-    
+     if(this.state.data.NumberOfAvailableParking==0)
+       {
+        alert("No parking space Available");
+        return;
+       }
       let currentTime = new Date();
       let endtime = new Date();
       endtime.setMinutes(endtime.getMinutes() + parseInt(this.state.duration));

@@ -28,7 +28,7 @@ class LoginInputs extends Component {
       .then((responseJson) => {
          if(responseJson && responseJson.Id) {
             global.user.id=responseJson.Id;
-            global.user.email=responseJson.UserId; // todo change it to email instead of UserId
+            global.user.email=responseJson.Email; // todo change it to email instead of UserId
             Actions.parkings({landingMessage: 'Listing your near by parking spots',type: 'reset'});
          } else{
             alert("Invalid email or password");
