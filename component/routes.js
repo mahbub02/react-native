@@ -9,11 +9,11 @@ import ReservationDetails from './reservationDetails.js'
 const Routes = () => (
    <Router>
       <Scene key = "root">
-         <Scene key = "login" component = {Login} title = "login"  initial = {true}/>
-         <Scene key = "signup" component = {Signup} title = "signup" />
-         <Scene key = "parkings" component = {Parkings} title = "parkings"  />
-         <Scene key = "parkingDetails" component = {ParkingDetails} title = "Parking Details" />
-         <Scene key = "reservationDetails" component = {ReservationDetails} title = "Reservation Details" />
+         <Scene key = "login" component = {Login} title = "LOG IN"  />
+         <Scene key = "signup" component = {Signup} title = "SIGN UP" />
+         <Scene key = "parkings" component = {Parkings} title = "NEARBY PARKING LIST"  initial = {true}/>
+         <Scene key = "parkingDetails" component = {ParkingDetails} title = "PARKING DETAILS" />
+         <Scene key = "reservationDetails" component = {ReservationDetails} title = "RESERVATION DETAILS" />
       </Scene>
    </Router>
 )

@@ -33,19 +33,35 @@ class Parkings extends Component {
    reservations = (item) => {
        Actions.reservationDetails();
    }
+   logout = (item) => {
+       Actions.login({type: 'reset'});
+   }
    render(){
       return( 
       <View style={styles.container}> 
-         <View> 
-            <TouchableOpacity
-               
-               style = {styles.reservationsButton}
-               onPress = {() => this.reservations()}>
-               
-               <Text style = {styles.reservationsButtonText}>
-                  ACTIVE RESERVATION
-               </Text>
-            </TouchableOpacity>
+         <View style={{position: 'absolute', left: 0, right: 0, bottom: 0,flexDirection: 'row'}}> 
+             <View style={{ flexGrow:1}}> 
+               <TouchableOpacity
+                  
+                  style = {styles.reservationsButton}
+                  onPress = {() => this.reservations()}>
+                  
+                  <Text style = {styles.reservationsButtonText}>
+                     ACTIVE RESERVATION
+                  </Text>
+               </TouchableOpacity>
+              </View>
+               <View style={{ flexGrow:1, borderLeftWidth:1, borderLeftColor:'black'}}> 
+                  <TouchableOpacity
+                     
+                     style = {styles.reservationsButton}
+                     onPress = {() => this.logout()}>
+                     
+                     <Text style = {styles.reservationsButtonText}>
+                        LOG OUT
+                     </Text>
+                  </TouchableOpacity>
+              </View>
          </View>
          <Text style={styles.landingTextStyle}> {this.props.landingMessage} </Text>
          <View> 
