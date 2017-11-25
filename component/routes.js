@@ -11,9 +11,9 @@ const Routes = () => (
       <Scene key = "root">
          <Scene key = "login" component = {Login} title = "login"  />
          <Scene key = "signup" component = {Signup} title = "signup" />
-         <Scene key = "parkings" component = {Parkings} title = "parkings" initial = {true} />
+         <Scene key = "parkings" component = {Parkings} title = "parkings"  />
          <Scene key = "parkingDetails" component = {ParkingDetails} title = "Parking Details" />
-         <Scene key = "reservationDetails" component = {ReservationDetails} title = "Reservation Details" />
+         <Scene key = "reservationDetails" component = {ReservationDetails} title = "Reservation Details" initial = {true}/>
       </Scene>
    </Router>
 )

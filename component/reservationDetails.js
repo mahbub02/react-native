@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, TouchableOpacity, TextInput, StyleSheet, Picker } from 'react-native'
+import {Image, View, Text, TouchableOpacity, TextInput, StyleSheet, Picker } from 'react-native'
 import { Actions } from 'react-native-router-flux';
 
 class ReservationDetails extends Component {
@@ -68,49 +68,61 @@ class ReservationDetails extends Component {
    }
    render(){
       return( 
-      <View > 
-         <Text> {this.props.landingMessage} </Text>
-         <View> 
-             <Text style = {styles.text}>
-                  {global.user.email}
-            </Text>
+         <View style={styles.container}> 
+         <Text style = {{textAlign:'center', fontSize: 15, color:'white', fontWeight: 'bold', paddingBottom:100}}> {this.props.landingMessage} </Text>
+         <View style={{ flexDirection: 'row'}}>
+            <View style={{ flexGrow:1}}> 
+               <Text style = {{textAlign:'center', fontSize: 15, color:'white', fontWeight: 'bold'}}>
+                    {this.state.data.StartTime}
+              </Text>
+               <Text style = {{textAlign:'center', color:'white'}}>
+                    Start Time
+              </Text>
+           </View>
+            
+           <View style={{ flexGrow: 1}}> 
+               <Text style = {{textAlign:'center', fontSize: 15, color:'white', fontWeight: 'bold'}}>
+                    {this.state.data.EndTime}
+              </Text>
+               <Text style = {{textAlign:'center', color:'white'}}>
+                    End Time
+              </Text>
+           </View>
          </View>
-          <View> 
-             <Text style = {styles.text}>
-                  {this.state.data.ParkingSpotId}
+            <View style={{ justifyContent: 'center', alignItems: 'center', marginTop:40 }}> 
+                <Image style={{width: 100, height: 100}}
+                 source={require('../images/pin.png')}
+               />
+            </View>
+          <View style= {{justifyContent: 'center', alignItems: 'center'}}> 
+             <Text style = {{fontSize: 15, color:'white', fontWeight: 'bold'}}>
+                  RESERVED SPACE
             </Text>
-         </View>
-         <View> 
-             <Text style = {styles.text}>
-                  {this.state.data.StartTime}
+             <Text style = {{fontSize: 25, color:'white', fontWeight: 'bold', paddingBottom: 20}}>
+                  {this.state.data.SpaceId}
             </Text>
+             
          </View>
-         <View> 
-             <Text style = {styles.text}>
-                  {this.state.data.EndTime}
-            </Text>
-         </View>
+        
          
-         <View> 
-             <Text style = {styles.text}>
-                 "space id:" {this.state.data.SpaceId}
-            </Text>
-         </View>
-         
+        
 
          <View> 
+                  
                   <TouchableOpacity
                      
-                     style = {styles.container}
+                     style = {styles.reservationsButton}
                      onPress = {() => this.cancelIt()}>
                      
-                     <Text style = {styles.text}>
-                        "Cancel reservation"
+                     <Text style = {styles.reservationsButtonText}>
+                        CANCEL RSERVATION
                      </Text>
                   </TouchableOpacity>
          
          </View>
       </View>
+
+    
 
       )
    }
@@ -119,10 +131,21 @@ export default ReservationDetails;
 
 const styles = StyleSheet.create ({
    container: {
-      padding: 10,
-      marginTop: 3,
-      backgroundColor: '#d9f9b1',
-      alignItems: 'center',
+      padding:10,
+      backgroundColor: 'black',
+      flex:1
+      
+   },
+   reservationsButtonText: {
+      color: 'black',
+      textAlign: 'center',
+      fontWeight: 'bold',
+   },
+   reservationsButton: {
+     backgroundColor: '#FDC02F',
+      paddingTop: 10,
+       paddingBottom: 10,
+      height: 40,
    },
    text: {
       color: '#4f603c'

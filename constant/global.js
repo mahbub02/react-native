@@ -1,1 +1,1 @@
-global.user = {};
+global.user = {email:'sadiashormin@gmail.com'};
