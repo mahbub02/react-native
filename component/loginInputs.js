@@ -52,6 +52,7 @@ class LoginInputs extends Component {
             <TextInput style = {styles.input}
                underlineColorAndroid = "transparent"
                placeholder = "Email"
+               autoCorrect={false}
                placeholderTextColor = "#FFECD8"
                autoCapitalize = "none"
               
@@ -62,7 +63,8 @@ class LoginInputs extends Component {
                placeholder = "Password"
                placeholderTextColor = "#FFECD8"
                autoCapitalize = "none"
-              
+               autoCorrect={false}
+               secureTextEntry={true}
                onChangeText = {this.handlePassword}/>
                
             <TouchableOpacity
