@@ -8,7 +8,7 @@ class ParkingDetails extends Component {
       duration: 15
    }
   componentDidMount = () => {
-    alert(this.props.Id);
+   
     let url='http://ezpark.azurewebsites.net/api/parkingspots/'+this.props.Id;
       fetch(url, {
          method: 'GET'
@@ -50,10 +50,10 @@ class ParkingDetails extends Component {
       .then((responseJson) => {
          
          if(responseJson.Message){
-             alert("Service unavailable, please try again later");
+             alert("You might have another active reservation, please cancel that reservation first to proceed");
          } else {
-            alert("Reservation is successful."+ responseJson.Id);
-            Actions.reservationDetails({Id: responseJson.Id});
+            alert("Reservation is successful.");
+            Actions.reservationDetails();
          }
       })
       .catch((error) => {

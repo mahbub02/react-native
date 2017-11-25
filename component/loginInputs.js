@@ -29,7 +29,7 @@ class LoginInputs extends Component {
          if(responseJson && responseJson.Id) {
             global.user.id=responseJson.Id;
             global.user.email=responseJson.UserId; // todo change it to email instead of UserId
-            Actions.parkings({landingMessage: 'Listing your near by parking spots'});
+            Actions.parkings({landingMessage: 'Listing your near by parking spots',type: 'reset'});
          } else{
             alert("Invalid email or password");
          }
@@ -91,7 +91,7 @@ export default LoginInputs
 const styles = StyleSheet.create({
    container: {
       paddingTop: 23,
-       justifyContent: 'center',
+      justifyContent: 'center',
      
    },
    input: {

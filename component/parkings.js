@@ -31,9 +31,7 @@ class Parkings extends Component {
 
    }
    reservations = (item) => {
-    
        Actions.reservationDetails();
-
    }
    render(){
       return( 

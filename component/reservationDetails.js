@@ -1,24 +1,29 @@
 import React, { Component } from 'react'
 import {Image, View, Text, TouchableOpacity, TextInput, StyleSheet, Picker } from 'react-native'
 import { Actions } from 'react-native-router-flux';
-
+import Moment from 'moment';
 class ReservationDetails extends Component {
   state = {
       data: {},
       duration: 15
    }
   componentDidMount = () => {
-    alert(this.props.Id);
+    
     let url='http://ezpark.azurewebsites.net/api/Reservations?email='+global.user.email;
       fetch(url, {
          method: 'GET'
       })
       .then((response) => response.json())
       .then((responseJson) => {
-         console.log(responseJson);
-         this.setState({
-            data: responseJson[0]
-         })
+         if(responseJson.length>0) {
+            this.setState({
+              data: responseJson[0]
+           })
+          }else {
+            alert("you don't have any active reservation");
+            Actions.parkings({landingMessage: 'Listing your near by parking spots',type: 'reset'});
+          }
+         
       })
       .catch((error) => {
          console.error(error);
@@ -29,22 +34,22 @@ class ReservationDetails extends Component {
 	 
 	}
   cancelIt = () => {
-      alert("");
+      
       let currentTime = new Date();
       let endtime = new Date();
       endtime.setMinutes(endtime.getMinutes() + parseInt(this.state.duration));
-      fetch('http://ezpark.azurewebsites.net/api/Reservations/', {
+      fetch('http://ezpark.azurewebsites.net/api/Reservations/'+this.state.data.Id, {
         method: 'PUT',
         headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-         Id: this.state.Id,
-         ParkingSpotId: this.state.ParkingSpotId,
-         UserId: global.user.id,
-         StartTime: this.state.StartTime,
-         EndTime: this.state.EndTime
+         Id: this.state.data.Id,
+         ParkingSpotId: this.state.data.ParkingSpotId,
+         UserId: this.state.data.UserId,
+         StartTime: this.state.data.StartTime,
+         EndTime: this.state.data.EndTime
         })
       })
       .then((response) => response.json())
@@ -52,78 +57,80 @@ class ReservationDetails extends Component {
          
          if(responseJson.Message){
              alert("Service unavailable, please try again later");
+         }
+         if(responseJson.Id){ 
+          alert("Reservation is successfully cancelled");
+          Actions.parkings({landingMessage: 'Listing your near by parking spots'});
+         
          } else {
-            alert("Reservation is successful."+ responseJson.Id);
-            //Actions.login({landingMessage: 'Account successfully created. Please login'});
+           alert("Service unavailable, please try again later");
+            
          }
 
-         
-         this.setState({
-            data: responseJson
-         })
       })
       .catch((error) => {
          alert(error);
       });
    }
+  convertUTCDateToLocalDate=(date)=> {
+    var newDate = new Date(date.getTime()+date.getTimezoneOffset()*60*1000);
+
+    var offset = date.getTimezoneOffset() / 60;
+    var hours = date.getHours();
+
+    newDate.setHours(hours - offset);
+
+    return newDate;   
+} 
    render(){
+     Moment.locale('en');
       return( 
          <View style={styles.container}> 
-         <Text style = {{textAlign:'center', fontSize: 15, color:'white', fontWeight: 'bold', paddingBottom:100}}> {this.props.landingMessage} </Text>
-         <View style={{ flexDirection: 'row'}}>
-            <View style={{ flexGrow:1}}> 
-               <Text style = {{textAlign:'center', fontSize: 15, color:'white', fontWeight: 'bold'}}>
-                    {this.state.data.StartTime}
+           <View style= {{justifyContent: 'center', alignItems: 'center'}}> 
+               <Text style = {{fontSize: 15, color:'white', fontWeight: 'bold', paddingTop: 100}}>
+                    RESERVED SPACE
               </Text>
-               <Text style = {{textAlign:'center', color:'white'}}>
-                    Start Time
+               <Text style = {{fontSize: 100, color:'white', fontWeight: 'bold', paddingBottom: 20}}>
+                    {this.state.data.SpaceId}
               </Text>
            </View>
-            
-           <View style={{ flexGrow: 1}}> 
-               <Text style = {{textAlign:'center', fontSize: 15, color:'white', fontWeight: 'bold'}}>
-                    {this.state.data.EndTime}
-              </Text>
-               <Text style = {{textAlign:'center', color:'white'}}>
-                    End Time
-              </Text>
+           <View style={{ flexDirection: 'row', paddingTop: 100, paddingBottom:100}}>
+              <View style={{ flexGrow:1}}> 
+                 <Text style = {{textAlign:'center', color:'white'}}>
+                      Start Time
+                </Text>
+                 <Text style = {{textAlign:'center', fontSize: 15, color:'white', fontWeight: 'bold'}}>
+                      
+                 {Moment(this.convertUTCDateToLocalDate(new Date(this.state.data.StartTime))).format('h:mm:ss a')} 
+                </Text>
+
+             </View>
+              
+             <View style={{ flexGrow: 1}}> 
+                 <Text style = {{textAlign:'center', color:'white'}}>
+                      End Time
+                </Text>
+                 <Text style = {{textAlign:'center', fontSize: 15, color:'white', fontWeight: 'bold'}}>
+                      {Moment(this.convertUTCDateToLocalDate(new Date(this.state.data.EndTime))).format('h:mm:ss a')} 
+
+                </Text>
+                 
+             </View>
+           </View>
+           <View> 
+                    
+                    <TouchableOpacity
+                       
+                       style = {styles.reservationsButton}
+                       onPress = {() => this.cancelIt()}>
+                       
+                       <Text style = {styles.reservationsButtonText}>
+                          CANCEL RESERVATION
+                       </Text>
+                    </TouchableOpacity>
+           
            </View>
          </View>
-            <View style={{ justifyContent: 'center', alignItems: 'center', marginTop:40 }}> 
-                <Image style={{width: 100, height: 100}}
-                 source={require('../images/pin.png')}
-               />
-            </View>
-          <View style= {{justifyContent: 'center', alignItems: 'center'}}> 
-             <Text style = {{fontSize: 15, color:'white', fontWeight: 'bold'}}>
-                  RESERVED SPACE
-            </Text>
-             <Text style = {{fontSize: 25, color:'white', fontWeight: 'bold', paddingBottom: 20}}>
-                  {this.state.data.SpaceId}
-            </Text>
-             
-         </View>
-        
-         
-        
-
-         <View> 
-                  
-                  <TouchableOpacity
-                     
-                     style = {styles.reservationsButton}
-                     onPress = {() => this.cancelIt()}>
-                     
-                     <Text style = {styles.reservationsButtonText}>
-                        CANCEL RSERVATION
-                     </Text>
-                  </TouchableOpacity>
-         
-         </View>
-      </View>
-
-    
-
       )
    }
 }

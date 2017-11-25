@@ -45,11 +45,12 @@ class SignupInputs extends Component {
       .then((response) => response.json())
       .then((responseJson) => {
          
-         if(responseJson.Message){
-             alert("Service unavailable, please try again later");
-         } else {
-            alert("Account successfully created. Please login");
+         if(responseJson.Id){
+             alert("Account successfully created. Please login");
             Actions.login({landingMessage: 'Account successfully created. Please login'});
+            
+         } else {
+            alert("Service unavailable, please try again later");
          }
 
          
