@@ -77,7 +77,7 @@ class LoginInputs extends Component {
                onPress = {
                   () => this.goToSignup()
                }>
-               <Text style = {styles.submitButtonText}> SIGN UP </Text>
+               <Text style = {styles.signupButtonText}> SIGN UP </Text>
             </TouchableOpacity>
             
          </View>
@@ -90,6 +90,7 @@ export default LoginInputs
 
 const styles = StyleSheet.create({
    container: {
+      padding: 40,
       paddingTop: 23,
       justifyContent: 'center',
      
@@ -100,7 +101,8 @@ const styles = StyleSheet.create({
       borderColor: '#CCC',
       borderWidth: 1,
       color: '#FDC02F',
-       paddingLeft: 5
+       paddingLeft: 5,
+       backgroundColor: '#525961'
    },
    submitButton: {
       backgroundColor: '#FDC02F',
@@ -110,19 +112,23 @@ const styles = StyleSheet.create({
      
    },
    signupButton: {
-      backgroundColor: '#FDC02F',
-      padding: 10,
+      backgroundColor: '#DC6365',
      
+     padding:10,
 
       margin: 15,
       height: 40,
+      marginTop:50,
       
    },
    submitButtonText:{
       color: 'black',
       textAlign: 'center',
       fontWeight: 'bold',
-
-
+   },
+   signupButtonText:{
+      color: 'white',
+      textAlign: 'center',
+      fontWeight: 'bold',
    }
 })

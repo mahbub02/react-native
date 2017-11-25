@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import LoginInputs from './loginInputs.js'
-import { View, Text, TouchableOpacity, TextInput, StyleSheet } from 'react-native'
+import { Image,View, Text, TouchableOpacity, TextInput, StyleSheet } from 'react-native'
 
 class Login extends Component {
 	constructor(props) {
@@ -9,8 +9,15 @@ class Login extends Component {
 	}
    render(){
       return( 
-      <View style = {{backgroundColor: 'black', flex: 1}}> 
-         <Text style={{ fontSize: 20, color: '#FDC02F',  padding: 10,paddingTop: 40, fontFamily: 'Cochin', textAlign:'center'}}> {this.props.landingMessage} </Text>
+      <View style = {{backgroundColor: 'white'}}> 
+            
+          <Image source={require('../images/background.jpg')} style={{ position: 'absolute',top:1, resizeMode: 'cover', flex:1}}>
+
+            </Image>
+            <Image source={require('../images/logo.png')} style={{ width:40, height: 40,  }}>
+
+            </Image>
+         <Text style={{ fontSize: 20, color: '#FDC02F',  fontFamily: 'Cochin', textAlign:'center'}}> {this.props.landingMessage} </Text>
      	 <LoginInputs />
       </View>)
    }

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, TouchableOpacity, TextInput, StyleSheet } from 'react-native'
+import {Image, View, Text, TouchableOpacity, TextInput, StyleSheet } from 'react-native'
 import { Actions } from 'react-native-router-flux';
 
 class Parkings extends Component {
@@ -39,6 +39,9 @@ class Parkings extends Component {
    render(){
       return( 
       <View style={styles.container}> 
+       <Image source={require('../images/background.jpg')} style={{ position: 'absolute',top:1, resizeMode: 'cover', flex:1}}>
+
+            </Image>
          <View style={{position: 'absolute', left: 0, right: 0, bottom: 0,flexDirection: 'row'}}> 
              <View style={{ flexGrow:1}}> 
                <TouchableOpacity
@@ -114,7 +117,7 @@ const styles = StyleSheet.create ({
       height: 40,
    },
    landingTextStyle: {
-     paddingTop:30,
+     paddingTop:10,
      paddingBottom:10,
      color: 'white',
      fontSize: 15,

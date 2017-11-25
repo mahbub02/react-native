@@ -86,7 +86,10 @@ class ReservationDetails extends Component {
      Moment.locale('en');
       return( 
          <View style={styles.container}> 
-           <View style= {{justifyContent: 'center', alignItems: 'center'}}> 
+          <Image source={require('../images/background.jpg')} style={{ position: 'absolute',top:1, resizeMode: 'cover', flex:1}}>
+
+            </Image>
+           <View style= {{justifyContent: 'center', alignItems: 'center',backgroundColor: 'transparent'}}> 
                <Text style = {{fontSize: 15, color:'white', fontWeight: 'bold', paddingTop: 100}}>
                     RESERVED SPACE
               </Text>
@@ -94,7 +97,7 @@ class ReservationDetails extends Component {
                     {this.state.data.SpaceId}
               </Text>
            </View>
-           <View style={{ flexDirection: 'row', paddingTop: 100, paddingBottom:100}}>
+           <View style={{ flexDirection: 'row', marginTop: 100, marginBottom:100 , padding:10, backgroundColor: '#525961'}}>
               <View style={{ flexGrow:1}}> 
                  <Text style = {{textAlign:'center', color:'white'}}>
                       Start Time

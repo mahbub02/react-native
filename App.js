@@ -8,7 +8,7 @@ import React, { Component } from 'react';
 import { Router, Scene } from 'react-native-router-flux';
 import Routes from './component/routes.js'
 import './constant/global.js'
-
+import { Image } from 'react-native'
 
 import {
   Platform,
@@ -28,9 +28,12 @@ const instructions = Platform.select({
 export default class App extends Component<{}> {
   render() {
     return (
-      
-      <Routes>
-      </Routes>
+      <View style= {{flex:1}}>
+         
+
+        <Routes>
+        </Routes>
+      </View>
     );
   }
 }

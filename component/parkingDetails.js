@@ -64,22 +64,25 @@ class ParkingDetails extends Component {
       return( 
       <View style={styles.container}> 
          <Text> {this.props.landingMessage} </Text>
+          <Image source={require('../images/background.jpg')} style={{ position: 'absolute',top:1, resizeMode: 'cover', flex:1}}>
+
+            </Image>
          <View style={{ flexDirection: 'row'}}>
-            <View style={{ flexGrow:1}}> 
-               <Text style = {{textAlign:'center', fontSize: 20, color:'white', fontWeight: 'bold'}}>
+            <View style={{ flexGrow:1,backgroundColor: 'transparent'}}> 
+               <Text style = {{textAlign:'center', fontSize: 40, color:'white', fontWeight: 'bold'}}>
                     {this.state.data.NumberOfSpace}
               </Text>
                <Text style = {{textAlign:'center', color:'white'}}>
                     Space
               </Text>
            </View>
-            <View style={{ flexGrow:1, justifyContent: 'center', alignItems: 'center'}}> 
+            <View style={{ flexGrow:1, justifyContent: 'center', alignItems: 'center',backgroundColor: 'transparent'}}> 
                 <Image style={{width: 100, height: 100}}
                  source={require('../images/pin.png')}
                />
             </View>
-           <View style={{ flexGrow: 1}}> 
-               <Text style = {{textAlign:'center', fontSize: 20, color:'white', fontWeight: 'bold'}}>
+           <View style={{ flexGrow: 1, backgroundColor: 'transparent'}}> 
+               <Text style = {{textAlign:'center', fontSize: 40, color:'white', fontWeight: 'bold'}}>
                     {this.state.data.NumberOfAvailableParking}
               </Text>
                <Text style = {{textAlign:'center', color:'white'}}>
@@ -88,7 +91,7 @@ class ParkingDetails extends Component {
            </View>
          </View>
        
-          <View style= {{justifyContent: 'center', alignItems: 'center'}}> 
+          <View style= {{justifyContent: 'center', alignItems: 'center', backgroundColor: 'transparent'}}> 
              <Text style = {{fontSize: 20, color:'white', fontWeight: 'bold'}}>
                   {this.state.data.Name}
             </Text>
@@ -113,7 +116,7 @@ class ParkingDetails extends Component {
            <Picker.Item label="3 hours" value="180" color="white"/>
            <Picker.Item label="8 Hour" value="480" color="white"/>
          </Picker>
-          <Text style = {{fontSize: 15, color:'white',  textAlign: 'center', paddingBottom: 20}}>
+          <Text style = {{fontSize: 15, color:'white',  textAlign: 'center', paddingBottom: 20,backgroundColor: 'transparent'}}>
                   Duration
             </Text>
          <View> 
@@ -138,7 +141,7 @@ export default ParkingDetails;
 const styles = StyleSheet.create ({
    container: {
       padding:10,
-      backgroundColor: 'black',
+      
       flex:1
       
    },
@@ -161,7 +164,7 @@ const styles = StyleSheet.create ({
      fontWeight:'bold'
    },
    parking: {
-     backgroundColor: 'white',
+    
      padding: 5,
      borderBottomColor: "black",
      borderBottomWidth: 1
@@ -169,7 +172,8 @@ const styles = StyleSheet.create ({
    name: {
      color: 'black',
      fontSize: 15,
-     fontWeight:'bold'
+     fontWeight:'bold',
+     backgroundColor: 'transparent'
    },
     address: {
      color: 'black',
