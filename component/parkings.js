@@ -39,7 +39,7 @@ class Parkings extends Component {
    render(){
       return( 
       <View style={styles.container}> 
-       <Image source={require('../images/background.jpg')} style={{ position: 'absolute',top:1, resizeMode: 'cover', flex:1}}>
+             <Image source={require('../images/background.jpg')} style={{ position: 'absolute',top:1, resizeMode: 'cover', flex:1}}>
 
             </Image>
          <View style={{position: 'absolute', left: 0, right: 0, bottom: 0,flexDirection: 'row'}}> 
@@ -79,14 +79,9 @@ class Parkings extends Component {
                         {item.Name}
                      </Text>
                      <Text style = {styles.address}>
-                        {item.Address}
+                        {item.Address}, {item.City}, {item.ZipCode}
                      </Text>
-                     <Text style = {styles.address}>
-                        {item.City}
-                     </Text>
-                     <Text style = {styles.address}>
-                        {item.ZipCode}
-                     </Text>
+                     
                   </TouchableOpacity>
                ))
             }
@@ -101,7 +96,7 @@ export default Parkings;
 const styles = StyleSheet.create ({
    container: {
       padding:10,
-      backgroundColor: 'black',
+     
       flex:1
       
    },
@@ -121,22 +116,24 @@ const styles = StyleSheet.create ({
      paddingBottom:10,
      color: 'white',
      fontSize: 15,
-     fontWeight:'bold'
+     fontWeight:'bold',
+     backgroundColor: 'transparent'
    },
    parking: {
      backgroundColor: 'white',
-     padding: 5,
-     borderBottomColor: "black",
+     padding: 10,
+     borderBottomColor: "#CCC",
      borderBottomWidth: 1
    },
    name: {
      color: 'black',
-     fontSize: 15,
+     fontSize: 25,
+     color: "#4D535F",
      fontWeight:'bold'
    },
     address: {
      color: 'black',
-     fontSize: 12
+     fontSize: 17
      
    },
 })
